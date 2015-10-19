@@ -8,9 +8,10 @@
 package sg.edu.nus.iss.vmcs.machinery;
 
 import java.awt.*;
-
+import sg.edu.nus.iss.vmcs.commandimpl.*;
 import sg.edu.nus.iss.vmcs.store.*;
 import sg.edu.nus.iss.vmcs.util.*;
+import sg.edu.nus.iss.vmcs.action.*;
 
 /**
  * This boundary object displays the contents of a store (DrinksStore or CashStore) and
@@ -65,8 +66,9 @@ public class StoreViewer extends Panel {
 			viewItems[i] = new LabelledDisplay(name,
 						LabelledDisplay.DEFAULT,
 						LabelledDisplay.GRID);
-			viewItems[i].addListener(
-                        new StoreViewerListener(type, i, storeCtrl));
+			//Comment below old code
+			//viewItems[i].addListener(new StoreViewerListener(type, i, storeCtrl));
+			viewItems[i].addListener(new CommandActionListener(new ChangeStoreQtyCommand(type,i,storeCtrl,viewItems[i].getValue())));
 			this.add(viewItems[i]);
 		}
 		

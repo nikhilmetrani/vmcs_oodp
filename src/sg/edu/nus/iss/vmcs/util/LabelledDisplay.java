@@ -15,6 +15,8 @@ import java.awt.Panel;
 import java.awt.TextField;
 import java.awt.event.ActionListener;
 
+import sg.edu.nus.iss.vmcs.util.*;
+
 /**
  * This boundary object displays an updatable text field next to a fixed label.
  *
@@ -118,5 +120,9 @@ public class LabelledDisplay extends Panel {
 	 */
 	public void setTextForeground(Color c) {
 		value.setForeground(c);
+	}
+	
+	public TextField getValue(){
+		return value;
 	}
 }//End of class LabelledDisplay

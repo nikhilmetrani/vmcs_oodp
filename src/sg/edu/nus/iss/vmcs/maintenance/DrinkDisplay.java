@@ -49,6 +49,8 @@ public class DrinkDisplay extends Panel {
 		bi.clear();
 		price = new LabelledDisplay("Brand Price", 4, LabelledDisplay.FLOW);
 
+		
+		
 		PriceDisplayListener pdl;
 
 		pdl = new PriceDisplayListener(mCtrl);

@@ -19,6 +19,9 @@ import sg.edu.nus.iss.vmcs.store.StoreController;
 import sg.edu.nus.iss.vmcs.store.StoreItem;
 import sg.edu.nus.iss.vmcs.store.StoreObject;
 import sg.edu.nus.iss.vmcs.system.MainController;
+import sg.edu.nus.iss.vmcs.command.*;
+import sg.edu.nus.iss.vmcs.commandimpl.DrinkSelectionCommand;
+import sg.edu.nus.iss.vmcs.action.*;
 
 /**
  * This interface object is part of the Customer Panel&#46; It is used by the Customer to select a drink.
@@ -54,7 +57,11 @@ public class DrinkSelectionBox extends Panel{
 			int drinksPrice=drinksBrand.getPrice();
 			int drinksQuantity=drinksStoreItem.getQuantity();
 			drinkSelectionItems[i]=new DrinkSelectionItem(i,drinksName,drinksPrice,drinksQuantity,true,false);
-			drinkSelectionItems[i].addListener(new DrinkSelectionListener(txCtrl,i));
+			//Comment Below old Line
+			//drinkSelectionItems[i].addListener(new DrinkSelectionListener(txCtrl,i));
+			DrinkSelectionCommand command = new DrinkSelectionCommand(drinkSelectionItems[i].getButton(), txCtrl, i);
+			drinkSelectionItems[i].addListener(new CommandActionListener(
+					command));
 			add(drinkSelectionItems[i],new GridBagConstraints(0,i,1,1,1.0,0.0,
 				    GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
 				    new Insets(5,0,0,0),10,0));  

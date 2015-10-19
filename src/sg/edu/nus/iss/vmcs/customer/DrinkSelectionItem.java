@@ -201,4 +201,8 @@ public class DrinkSelectionItem extends Panel{
 	public boolean getState() {
 		return isActive;
 	}
+	
+	public Button getButton(){
+		return btn;
+	}
 }//End of class DrinkSelectionItem

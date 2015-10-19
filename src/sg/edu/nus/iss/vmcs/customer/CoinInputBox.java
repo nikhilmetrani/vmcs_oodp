@@ -44,6 +44,7 @@ public class CoinInputBox extends Panel{
 		StoreItem[] cashStoreItems=storeCtrl.getStore(Store.CASH).getItems();
 		
 		btnCoinButton=new CoinButton[cashStoreSize+1];
+		//Comment below line
 		CoinInputListener coinInputListener=new CoinInputListener(txCtrl.getCoinReceiver());
 		
 		setLayout(new GridBagLayout());
@@ -55,6 +56,9 @@ public class CoinInputBox extends Panel{
 			String coinName=coin.getName();
 			int coinValue=coin.getValue();
 			double coinWeight=coin.getWeight();
+			//----------------------------------------------
+			
+			//---------------------------------------------------
 			btnCoinButton[i]=new CoinButton(coinName,coinValue,coinWeight);
 			btnCoinButton[i].addActionListener(coinInputListener);
 			add(btnCoinButton[i],new GridBagConstraints(i,1,1,1,1.0,0.0,
@@ -62,6 +66,9 @@ public class CoinInputBox extends Panel{
 				    new Insets(0,0,0,0),10,8));
 		}
 		btnCoinButton[cashStoreSize]=new CoinButton("Invalid",-1,CashStore.INVALID_COIN_WEIGHT);
+		//-----------------------------------------------------------
+		
+		//------------------------------------------------------------
 		btnCoinButton[cashStoreSize].addActionListener(coinInputListener);
 		add(btnCoinButton[cashStoreSize],new GridBagConstraints(cashStoreSize,1,1,1,1.0,0.0,
 			    GridBagConstraints.EAST,GridBagConstraints.HORIZONTAL,
