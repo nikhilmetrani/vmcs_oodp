@@ -58,6 +58,8 @@ public class MaintenanceController {
 			mpanel = new MaintenancePanel((Frame) scp, this);
 		mpanel.display();
 		mpanel.setActive(MaintenancePanel.DIALOG, true);
+		//mCtrl.subscribeToCash(mpanel);
+		//mCtrl.subscribeToDrinks(mpanel);
 		// setActive of password, invalid and valid display.
 	}
 
@@ -173,16 +175,8 @@ public class MaintenanceController {
 
 		int cc; // coin quantity;
 
-		try {
-			cc = sctrl.transferAll();
-			mpanel.displayCoins(cc);
-			machctrl.displayCoinStock();
-			// the cash qty current is displayed in the Maintenance panel needs to be update to be 0;
-			// not required.
-			mpanel.updateCurrentQtyDisplay(Store.CASH, 0);
-		} catch (VMCSException e) {
-			System.out.println("MaintenanceController.transferAll:" + e);
-		}
+		cc = sctrl.transferAll();
+		mpanel.displayCoins(cc);
 	}
 
 	/**
@@ -192,14 +186,8 @@ public class MaintenanceController {
 	 * @param qty the quantity of the StoreItem.
 	 */
 	public void changeStoreQty(char type, int idx, int qty) {
-		//StoreController sctrl = mCtrl.getStoreController();
-		try {
-			mpanel.updateQtyDisplay(type, idx, qty);
-			mpanel.initCollectCash();
-			mpanel.initTotalCash();
-		} catch (VMCSException e) {
-			System.out.println("MaintenanceController.changeStoreQty:" + e);
-		}
+		mpanel.initCollectCash();
+		mpanel.initTotalCash();
 	}
 
 	/**

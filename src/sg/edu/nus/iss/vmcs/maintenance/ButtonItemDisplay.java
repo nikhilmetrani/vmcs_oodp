@@ -19,7 +19,7 @@ import sg.edu.nus.iss.vmcs.util.VMCSException;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class ButtonItemDisplay extends Panel {
+public class ButtonItemDisplay extends Panel implements Observer {
 	private ButtonItem items[];
 	private int len;
 	private Label lb;
@@ -54,6 +54,8 @@ public class ButtonItemDisplay extends Panel {
 					ButtonItem.DEFAULT_LEN,
 					ButtonItem.GRID);
 			this.add(items[i]);
+			sitem[i].attach(this); //This is necessary only to clear the button items.
+			sitem[i].attach(items[i]); //Actual value update
 		}
 	}
 
@@ -102,7 +104,13 @@ public class ButtonItemDisplay extends Panel {
 	public void displayQty(int idx, int qty) throws VMCSException {
 		if (idx >= len)
 			throw new VMCSException("ButtomDisplay.setQty", "Index over flow");
-
 		items[idx].setValue(qty);
 	}
+
+	@Override
+	public void update(Observable observable) {
+		clear();
+		System.out.println("ButtonItemDisplay clear");
+	}
+	
 }//End of class ButtonItemDisplay.

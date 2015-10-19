@@ -19,6 +19,10 @@ import java.awt.Label;
 import java.awt.Panel;
 import java.awt.Toolkit;
 
+import sg.edu.nus.iss.vmcs.store.CashStoreItem;
+import sg.edu.nus.iss.vmcs.store.DrinksStoreItem;
+import sg.edu.nus.iss.vmcs.store.Observable;
+import sg.edu.nus.iss.vmcs.store.Observer;
 import sg.edu.nus.iss.vmcs.store.Store;
 import sg.edu.nus.iss.vmcs.util.LabelledDisplay;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
@@ -268,7 +272,7 @@ public class MaintenancePanel extends Dialog {
 	}
 
 	/**
-	 *  Use when machinery simulator panel changes qty;
+	 	 *  Use when machinery simulator panel changes qty;
 	 *  It is used to automatically update the displayed quantity in maintenance panel&#46;
 	 *  It is called by Maintenance Controller&#46;
 	 *  Not required in requirement&#46;
@@ -325,4 +329,21 @@ public class MaintenancePanel extends Dialog {
 	public void displayPrice(int price) {
 		dDisplay.getPriceDisplay().setValue(price + "C");
 	}
+	
+	/*@Override
+	public void update(Observable observable) {
+		try {
+			if (observable instanceof CashStoreItem) {
+				CashStoreItem item = (CashStoreItem)observable;
+				cDisplay.displayQty(cDisplay.getCurIdx(), item.getQuantity());
+				System.out.printf("Cash update: %d\n", item.getQuantity());
+			} else if (observable instanceof DrinksStoreItem) {
+				DrinksStoreItem item = (DrinksStoreItem)observable;
+				dDisplay.displayQty(dDisplay.getCurIdx(), item.getQuantity());
+				System.out.printf("Drink update: %d\n", item.getQuantity());
+			}
+		} catch (VMCSException ex) {
+			ex.printStackTrace();
+		}
+	}*/
 }//End of class MaintenancePanel

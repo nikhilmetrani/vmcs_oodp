@@ -106,21 +106,11 @@ public class SimulationController {
 
 		machCtrl = mCtrl.getMachineryController();
 		scp.setActive(SimulatorControlPanel.ACT_MACHINERY, false);
-		try {
-			// activate when not login
-			// always diaply the door locked; isOpen false
-			machCtrl.displayMachineryPanel();
+		// activate when not login
+		// always diaply the door locked; isOpen false
+		machCtrl.displayMachineryPanel();
 
-			// display drink stock;
-			machCtrl.displayDrinkStock();
-
-			// display coin quantity;
-			machCtrl.displayCoinStock();
-
-			machCtrl.displayDoorState();
-		} catch (VMCSException e) {
-			System.out.println("SimulationController.setupSimulator:" + e);
-		}
+		machCtrl.displayDoorState();
 	}
 
 	/**

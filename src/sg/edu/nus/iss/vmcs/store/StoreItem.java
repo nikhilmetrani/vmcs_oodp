@@ -25,7 +25,7 @@ package sg.edu.nus.iss.vmcs.store;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class StoreItem {
+public class StoreItem extends Observable {
 	private StoreObject content;
 	private int quantity;
 
@@ -61,6 +61,7 @@ public class StoreItem {
 	 */
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+		notifyChange();
 	}
 
 	/**
@@ -76,6 +77,7 @@ public class StoreItem {
 	 */
 	public void store() {
 		quantity++;
+		notifyChange();
 	}
 	
 	/**
@@ -85,6 +87,7 @@ public class StoreItem {
 		quantity--;
 		if (quantity < 0)
 			quantity = 0;
+		notifyChange();
 	}
 
 	/**
@@ -92,5 +95,6 @@ public class StoreItem {
 	 */
 	public void increment() {
 		quantity++;
+		notifyChange();
 	}
 }//End of class StoreItem

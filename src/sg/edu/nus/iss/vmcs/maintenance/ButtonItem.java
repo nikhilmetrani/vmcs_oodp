@@ -10,12 +10,18 @@ package sg.edu.nus.iss.vmcs.maintenance;
 import java.awt.*;
 import java.awt.event.*;
 
+import sg.edu.nus.iss.vmcs.store.CashStoreItem;
+import sg.edu.nus.iss.vmcs.store.DrinksStoreItem;
+import sg.edu.nus.iss.vmcs.store.Observable;
+import sg.edu.nus.iss.vmcs.store.Observer;
+import sg.edu.nus.iss.vmcs.store.StoreItem;
+
 /**
  * This boundary object displays one item in a ButtonItemDisplay.&#46;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class ButtonItem extends Panel {
+public class ButtonItem extends Panel implements Observer {
 	/**This constant attribute denotes the default length of the button label*/
 	public final static int DEFAULT_LEN = 5;
 	/**This constant attribute denotes the flow layout for button item content*/
@@ -111,4 +117,21 @@ public class ButtonItem extends Panel {
 		value.setBackground(ACT_COLOR);
 		value.setText(vl);
 	}
+
+	@Override
+	public void update(Observable observable) {
+		if (observable instanceof CashStoreItem) {
+			CashStoreItem item = (CashStoreItem)observable;
+			updateItemDetails(item);
+		} else if (observable instanceof DrinksStoreItem) {
+			DrinksStoreItem item = (DrinksStoreItem)observable;
+			updateItemDetails(item);
+		}
+	}
+	
+	private void updateItemDetails(StoreItem item) {
+		setValue(item.getQuantity());
+		System.out.printf("Maintenance %s update: %d\n", btn.getLabel(), item.getQuantity());
+	}
+	
 }//End of class ButtonItem

@@ -15,6 +15,11 @@ import java.awt.Panel;
 import java.awt.TextField;
 import java.awt.event.ActionListener;
 
+import sg.edu.nus.iss.vmcs.store.CashStoreItem;
+import sg.edu.nus.iss.vmcs.store.DrinksStoreItem;
+import sg.edu.nus.iss.vmcs.store.Observable;
+import sg.edu.nus.iss.vmcs.store.Observer;
+import sg.edu.nus.iss.vmcs.store.StoreItem;
 import sg.edu.nus.iss.vmcs.util.*;
 
 /**
@@ -23,7 +28,7 @@ import sg.edu.nus.iss.vmcs.util.*;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class LabelledDisplay extends Panel {
+public class LabelledDisplay extends Panel implements Observer {
 	/**This constant attribute denotes the default layout of the LabelledDisplay*/
 	public final static int DEFAULT = 5;
 	/**This constant attribute denotes the flow layout of the LabelledDisplay*/
@@ -124,5 +129,21 @@ public class LabelledDisplay extends Panel {
 	
 	public TextField getValue(){
 		return value;
+	}
+
+	@Override
+	public void update(Observable observable) {
+		if (observable instanceof CashStoreItem) {
+			CashStoreItem item = (CashStoreItem)observable;
+			updateValue(item);
+        } else if (observable instanceof DrinksStoreItem) {
+        	DrinksStoreItem item = (DrinksStoreItem)observable;
+        	updateValue(item);
+        }
+	}
+	
+	private void updateValue(StoreItem item) {
+		setValue(item.getQuantity());
+        System.out.printf("Machinery %s update: %d\n", item.getContent().getName(), item.getQuantity());
 	}
 }//End of class LabelledDisplay

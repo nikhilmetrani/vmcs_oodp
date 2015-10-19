@@ -46,7 +46,7 @@ public class CoinDisplay extends Panel {
 		bi.addListener(new CoinDisplayListener(mCtrl));
 
 		bi.clear();
-
+		
 		this.add(bi);
 
 	}

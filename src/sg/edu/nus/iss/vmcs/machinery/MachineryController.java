@@ -129,30 +129,6 @@ public class MachineryController {
 		ml.setDoorState(door.isDoorClosed());
 	}
 
-	/**
-	 * This method update drink stock view&#46;
-	 * This method will get the stock values of drinks brands from the Drinks Store
-	 * and display them on the Machinery SimulatorPanel.
-	 * @throws VMCSException if fail to update drinks store display.
-	 */
-	public void displayDrinkStock() throws VMCSException {
-		if (ml == null)
-			return;
-		ml.getDrinksStoreDisplay().update();
-	}
-
-	/**
-	 * This method update coin stock view after transfer all cash&#46;
-	 * This method will get the stock values of coin denominations from the CashStore and
-	 * display them on the MachinerySimulatorPanel.
-	 * @throws VMCSException if fail to update cash store display.
-	 */
-	public void displayCoinStock() throws VMCSException {
-		if (ml == null)
-			return;
-		ml.getCashStoreDisplay().update();
-	}
-
 	/* ************************************************************
 	 * Interactions with the Store that need to update the display
 	 */
@@ -194,14 +170,5 @@ public class MachineryController {
 		storeCtrl.giveChange(idx, numOfCoins);
 		if (ml != null)
 			ml.getCashStoreDisplay().update();
-	}
-	
-	/**
-	 * This method refresh the MachinerySimulatorPanel.
-	 */
-	public void refreshMachineryDisplay(){
-		if(ml!=null){
-			ml.refresh();
-		}
 	}
 }//End of class MachineryController

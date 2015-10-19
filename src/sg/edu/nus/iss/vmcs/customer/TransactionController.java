@@ -155,7 +155,6 @@ public class TransactionController {
 		coinReceiver.storeCash();
 		dispenseCtrl.allowSelection(true);
 		
-		refreshMachineryDisplay();
 		System.out.println("CompleteTransaction: End");
 	}
 	
@@ -169,7 +168,6 @@ public class TransactionController {
 		System.out.println("TerminateFault: Begin");
 		dispenseCtrl.allowSelection(false);
 		coinReceiver.refundCash();
-		refreshMachineryDisplay();
 		System.out.println("TerminateFault: End");
 	}
 	
@@ -193,7 +191,6 @@ public class TransactionController {
 		if(custPanel!=null){
 			custPanel.setTerminateButtonActive(false);
 		}
-		refreshMachineryDisplay();
 		System.out.println("TerminateTransaction: End");
 	}
 	
@@ -205,7 +202,6 @@ public class TransactionController {
 		coinReceiver.stopReceive();
 		coinReceiver.refundCash();
 		dispenseCtrl.allowSelection(true);
-		refreshMachineryDisplay();
 		System.out.println("CancelTransaction: End");
 	}
 	
@@ -327,14 +323,6 @@ public class TransactionController {
 	 */
 	public CoinReceiver getCoinReceiver(){
 		return coinReceiver;
-	}
-	
-	/**
-	 * This method refreshes the MachinerySimulatorPanel.
-	 */
-	public void refreshMachineryDisplay(){
-		mainCtrl.getMachineryController().refreshMachineryDisplay();
-		
 	}
 	
 	/**

@@ -12,6 +12,7 @@ import java.awt.event.*;
 
 import sg.edu.nus.iss.vmcs.store.*;
 import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
+import sg.edu.nus.iss.vmcs.util.VMCSException;
 
 /**
  * This panel simulates the physical actions of the maintainer&#46;
@@ -127,14 +128,6 @@ public class MachinerySimulatorPanel extends Dialog {
 
 	}
 
-	/**
-	 * This method refreshes the cash display and drinks display.
-	 */
-	public void refresh(){
-		cashDisplay.update();
-		drinksDisplay.update();
-	}
-	
 	/**
 	 * THis method activates or deactivates the MachinerySimulatorPanel and its component objects.
 	 * @param state TRUE to activate, FALSE to deactivate.

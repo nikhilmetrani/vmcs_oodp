@@ -68,6 +68,7 @@ public class StoreViewer extends Panel {
 						LabelledDisplay.GRID);
 			//Comment below old code
 			//viewItems[i].addListener(new StoreViewerListener(type, i, storeCtrl));
+			storeItem[i].attach(viewItems[i]);
 			viewItems[i].addListener(new CommandActionListener(new ChangeStoreQtyCommand(type,i,storeCtrl,viewItems[i].getValue())));
 			this.add(viewItems[i]);
 		}
