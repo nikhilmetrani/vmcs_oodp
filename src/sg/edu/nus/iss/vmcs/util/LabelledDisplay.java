@@ -133,17 +133,7 @@ public class LabelledDisplay extends Panel implements Observer {
 
 	@Override
 	public void update(Observable observable) {
-		if (observable instanceof CashStoreItem) {
-			CashStoreItem item = (CashStoreItem)observable;
-			updateValue(item);
-        } else if (observable instanceof DrinksStoreItem) {
-        	DrinksStoreItem item = (DrinksStoreItem)observable;
-        	updateValue(item);
-        }
-	}
-	
-	private void updateValue(StoreItem item) {
-		setValue(item.getQuantity());
-        System.out.printf("Machinery %s update: %d\n", item.getContent().getName(), item.getQuantity());
+		setValue(observable.getPropertyValue());
+		System.out.printf("Machinery %s update: %d\n", lb.getText(), observable.getPropertyValue());
 	}
 }//End of class LabelledDisplay

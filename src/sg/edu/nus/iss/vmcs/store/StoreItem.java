@@ -97,4 +97,9 @@ public class StoreItem extends Observable {
 		quantity++;
 		notifyChange();
 	}
+
+	@Override
+	public int getPropertyValue() {
+		return quantity;
+	}
 }//End of class StoreItem

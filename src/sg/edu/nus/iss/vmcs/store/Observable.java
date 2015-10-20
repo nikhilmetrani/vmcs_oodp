@@ -9,6 +9,7 @@ public abstract class Observable {
 	public void attach(Observer observer) {
 		if (!observers.contains(observer)) {
 			observers.add(observer);
+			observer.update(this);
 		}
 	}
 	
@@ -23,4 +24,6 @@ public abstract class Observable {
 			o.update(this);
 		}
 	}
+	
+	public abstract int getPropertyValue();
 }

@@ -272,36 +272,6 @@ public class MaintenancePanel extends Dialog {
 	}
 
 	/**
-	 	 *  Use when machinery simulator panel changes qty;
-	 *  It is used to automatically update the displayed quantity in maintenance panel&#46;
-	 *  It is called by Maintenance Controller&#46;
-	 *  Not required in requirement&#46;
-	 *  @throws VMCSException if fail to update quantity display.
-	 */
-	public void updateQtyDisplay(int type, int idx, int qty)
-		throws VMCSException {
-		if (type == Store.CASH) {
-			cDisplay.displayQty(idx, qty);
-		} else
-			dDisplay.displayQty(idx, qty);
-	}
-
-	/**
-	 * When transfer all button is pushed, the current display needs to be updated&#46;
-	 * not required in requirement&#46;
-	 * @throws VMCSException if fail to update quantity display.
-	 */
-	public void updateCurrentQtyDisplay(int type, int qty)
-		throws VMCSException {
-		int curIdx;
-		if (type == Store.CASH)
-			curIdx = cDisplay.getCurIdx();
-		else
-			curIdx = dDisplay.getCurIdx();
-		updateQtyDisplay(type, curIdx, qty);
-	}
-
-	/**
 	 * This method initiate the collect cash.
 	 */
 	public void initCollectCash() {
@@ -329,21 +299,4 @@ public class MaintenancePanel extends Dialog {
 	public void displayPrice(int price) {
 		dDisplay.getPriceDisplay().setValue(price + "C");
 	}
-	
-	/*@Override
-	public void update(Observable observable) {
-		try {
-			if (observable instanceof CashStoreItem) {
-				CashStoreItem item = (CashStoreItem)observable;
-				cDisplay.displayQty(cDisplay.getCurIdx(), item.getQuantity());
-				System.out.printf("Cash update: %d\n", item.getQuantity());
-			} else if (observable instanceof DrinksStoreItem) {
-				DrinksStoreItem item = (DrinksStoreItem)observable;
-				dDisplay.displayQty(dDisplay.getCurIdx(), item.getQuantity());
-				System.out.printf("Drink update: %d\n", item.getQuantity());
-			}
-		} catch (VMCSException ex) {
-			ex.printStackTrace();
-		}
-	}*/
 }//End of class MaintenancePanel

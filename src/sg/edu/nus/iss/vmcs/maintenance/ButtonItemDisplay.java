@@ -80,7 +80,8 @@ public class ButtonItemDisplay extends Panel implements Observer {
 		int i;
 		lb.setEnabled(st);
 		for (i = 0; i < len; i++) {
-			items[i].setActive(st);
+			if (null != items[i]) //let's ensure the item is not null
+				items[i].setActive(st);
 		}
 	}
 
@@ -89,8 +90,11 @@ public class ButtonItemDisplay extends Panel implements Observer {
 	 */
 	public void clear() {
 		int i;
-		for (i = 0; i < len; i++) {
-			items[i].clear();
+		if (items.length > 0) {
+			for (i = 0; i < len; i++) {
+				if (null != items[i]) //let's ensure the item is not null
+					items[i].clear();
+			}
 		}
 	}
 

@@ -68,39 +68,14 @@ public class StoreViewer extends Panel {
 						LabelledDisplay.GRID);
 			//Comment below old code
 			//viewItems[i].addListener(new StoreViewerListener(type, i, storeCtrl));
-			storeItem[i].attach(viewItems[i]);
+			storeItem[i].attach(viewItems[i]); // attach observer
 			viewItems[i].addListener(new CommandActionListener(new ChangeStoreQtyCommand(type,i,storeCtrl,viewItems[i].getValue())));
 			this.add(viewItems[i]);
 		}
-		
-		update();
 	}
-
-	/**
-	 * Update the display fields with the data provided.
-	 */
-	public void update () {
-		StoreItem[] storeItem = storeCtrl.getStoreItems(type);
-		for (int i = 0; i < storeItem.length; i++) {
-			int val = storeItem[i].getQuantity();
-			String sval = String.valueOf(val);
-			viewItems[i].setValue(sval);
-		}
-	}
-
-	/**
-	 * Update the display fields with data provided.
-	 * @param idx the index of the store item.
-	 * @param qty the quantity of the store item.
-	 * @throws VMCSException if fail index is greater or equal to store size.
-	 */
-	public void update(int idx, int qty) throws VMCSException {
-		int sSize = storeCtrl.getStoreSize(type);
-		if (idx >= sSize)
-			throw new VMCSException("StoreViewer.update", "index overflow");
-		viewItems[idx].setValue(qty);
-	}
-
+	
+	//No need to update display since it's taken care by the observer pattern!
+	
 	/**
 	 * This method close down the store viewer.
 	 */

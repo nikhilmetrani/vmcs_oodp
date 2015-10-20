@@ -120,18 +120,8 @@ public class ButtonItem extends Panel implements Observer {
 
 	@Override
 	public void update(Observable observable) {
-		if (observable instanceof CashStoreItem) {
-			CashStoreItem item = (CashStoreItem)observable;
-			updateItemDetails(item);
-		} else if (observable instanceof DrinksStoreItem) {
-			DrinksStoreItem item = (DrinksStoreItem)observable;
-			updateItemDetails(item);
-		}
-	}
-	
-	private void updateItemDetails(StoreItem item) {
-		setValue(item.getQuantity());
-		System.out.printf("Maintenance %s update: %d\n", btn.getLabel(), item.getQuantity());
+		setValue(observable.getPropertyValue());
+		System.out.printf("Maintenance %s update: %d\n", btn.getLabel(), observable.getPropertyValue());
 	}
 	
 }//End of class ButtonItem

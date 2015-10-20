@@ -140,8 +140,7 @@ public class MachineryController {
 	 */
 	public void storeCoin(Coin c) throws VMCSException {
 		storeCtrl.storeCoin(c);
-		if (ml != null)
-			ml.getCashStoreDisplay().update();
+		//No need to update display since it's taken care by the observer pattern!
 	}
 
 	/**
@@ -153,9 +152,7 @@ public class MachineryController {
 	 */
 	public void dispenseDrink(int idx) throws VMCSException {
 		storeCtrl.dispenseDrink(idx);
-		if (ml != null)
-			ml.getCashStoreDisplay().update();
-
+		//No need to update display since it's taken care by the observer pattern!
 	}
 
 	/**
@@ -168,7 +165,6 @@ public class MachineryController {
 	 */
 	public void giveChange(int idx, int numOfCoins) throws VMCSException {
 		storeCtrl.giveChange(idx, numOfCoins);
-		if (ml != null)
-			ml.getCashStoreDisplay().update();
+		//No need to update display since it's taken care by the observer pattern!
 	}
 }//End of class MachineryController
