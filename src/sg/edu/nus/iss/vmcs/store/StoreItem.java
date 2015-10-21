@@ -7,6 +7,8 @@
  */
 package sg.edu.nus.iss.vmcs.store;
 
+import sg.edu.nus.iss.vmcs.observer.pattern.Observable;
+
 /**
  * This entity object implements a generic storage item class&#46; It performs actions like;
  * returning content (Store Item identification), setting quantity, returning quantity,
@@ -61,7 +63,7 @@ public class StoreItem extends Observable {
 	 */
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
-		notifyChange();
+		notifyPropertyChange();
 	}
 
 	/**
@@ -77,7 +79,7 @@ public class StoreItem extends Observable {
 	 */
 	public void store() {
 		quantity++;
-		notifyChange();
+		notifyPropertyChange();
 	}
 	
 	/**
@@ -87,7 +89,7 @@ public class StoreItem extends Observable {
 		quantity--;
 		if (quantity < 0)
 			quantity = 0;
-		notifyChange();
+		notifyPropertyChange();
 	}
 
 	/**
@@ -95,7 +97,7 @@ public class StoreItem extends Observable {
 	 */
 	public void increment() {
 		quantity++;
-		notifyChange();
+		notifyPropertyChange();
 	}
 
 	@Override

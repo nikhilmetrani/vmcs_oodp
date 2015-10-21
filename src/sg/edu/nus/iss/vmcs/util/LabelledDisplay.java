@@ -15,12 +15,8 @@ import java.awt.Panel;
 import java.awt.TextField;
 import java.awt.event.ActionListener;
 
-import sg.edu.nus.iss.vmcs.store.CashStoreItem;
-import sg.edu.nus.iss.vmcs.store.DrinksStoreItem;
-import sg.edu.nus.iss.vmcs.store.Observable;
-import sg.edu.nus.iss.vmcs.store.Observer;
-import sg.edu.nus.iss.vmcs.store.StoreItem;
-import sg.edu.nus.iss.vmcs.util.*;
+import sg.edu.nus.iss.vmcs.observer.pattern.Observable;
+import sg.edu.nus.iss.vmcs.observer.pattern.Observer;
 
 /**
  * This boundary object displays an updatable text field next to a fixed label.

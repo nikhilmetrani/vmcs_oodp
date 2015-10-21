@@ -19,13 +19,7 @@ import java.awt.Label;
 import java.awt.Panel;
 import java.awt.Toolkit;
 
-import sg.edu.nus.iss.vmcs.store.CashStoreItem;
-import sg.edu.nus.iss.vmcs.store.DrinksStoreItem;
-import sg.edu.nus.iss.vmcs.store.Observable;
-import sg.edu.nus.iss.vmcs.store.Observer;
-import sg.edu.nus.iss.vmcs.store.Store;
 import sg.edu.nus.iss.vmcs.util.LabelledDisplay;
-import sg.edu.nus.iss.vmcs.util.VMCSException;
 import sg.edu.nus.iss.vmcs.util.WarningDisplay;
 
 /**
@@ -217,7 +211,7 @@ public class MaintenancePanel extends Dialog {
 	}
 
 	/**
-	 * This method activates or deactivtes the MaintenancePanel and its component objects.
+	 * This method activates or deactivates the MaintenancePanel and its component objects.
 	 * @param comp the component to set active status.
 	 * @param st the active status.
 	 */

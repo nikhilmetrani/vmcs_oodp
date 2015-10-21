@@ -7,6 +7,8 @@
  */
 package sg.edu.nus.iss.vmcs.maintenance;
 
+import sg.edu.nus.iss.vmcs.observer.pattern.Observable;
+import sg.edu.nus.iss.vmcs.observer.pattern.Observer;
 import java.awt.event.*;
 import java.awt.*;
 
@@ -53,9 +55,9 @@ public class ButtonItemDisplay extends Panel implements Observer {
 					ob.getName(),
 					ButtonItem.DEFAULT_LEN,
 					ButtonItem.GRID);
-			this.add(items[i]);
 			sitem[i].attach(this); //This is necessary only to clear the button items.
 			sitem[i].attach(items[i]); //Actual value update
+                        this.add(items[i]);
 		}
 	}
 

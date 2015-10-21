@@ -10,11 +10,8 @@ package sg.edu.nus.iss.vmcs.maintenance;
 import java.awt.*;
 import java.awt.event.*;
 
-import sg.edu.nus.iss.vmcs.store.CashStoreItem;
-import sg.edu.nus.iss.vmcs.store.DrinksStoreItem;
-import sg.edu.nus.iss.vmcs.store.Observable;
-import sg.edu.nus.iss.vmcs.store.Observer;
-import sg.edu.nus.iss.vmcs.store.StoreItem;
+import sg.edu.nus.iss.vmcs.observer.pattern.Observable;
+import sg.edu.nus.iss.vmcs.observer.pattern.Observer;
 
 /**
  * This boundary object displays one item in a ButtonItemDisplay.&#46;

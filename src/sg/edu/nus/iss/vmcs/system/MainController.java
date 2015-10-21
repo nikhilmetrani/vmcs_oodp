@@ -12,10 +12,7 @@ import java.io.IOException;
 import sg.edu.nus.iss.vmcs.customer.TransactionController;
 import sg.edu.nus.iss.vmcs.machinery.MachineryController;
 import sg.edu.nus.iss.vmcs.maintenance.MaintenanceController;
-import sg.edu.nus.iss.vmcs.store.Observer;
-import sg.edu.nus.iss.vmcs.store.Store;
 import sg.edu.nus.iss.vmcs.store.StoreController;
-import sg.edu.nus.iss.vmcs.store.StoreItem;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
 
 /**
@@ -148,22 +145,5 @@ public class MainController {
 		machineryCtrl.closeDown();
 		maintenanceCtrl.closeDown();
 		simulatorCtrl.closeDown();
-	}
-	
-	public void subscribeToDrinks(Observer observer) {
-		subscribeStoreItem(Store.DRINK, observer);
-	}
-	
-	public void subscribeToCash(Observer observer) {
-		subscribeStoreItem(Store.CASH, observer);
-	}
-	
-	private void subscribeStoreItem(int itemType, Observer observer) {
-		int size = storeCtrl.getStoreSize(itemType);
-		for (int i = 0; i < size; i++)
-		{
-		        StoreItem item = storeCtrl.getStoreItem(itemType, i);
-		        item.attach(observer);
-		}
 	}
 }//End of class MainController

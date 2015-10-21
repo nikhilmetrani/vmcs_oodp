@@ -18,35 +18,40 @@ import sg.edu.nus.iss.vmcs.util.*;
  */
 
 public class Vmcs {
-	private String propertiesFile;
+    private String propertiesFile;
 
-	/**
-	 * This constructor creates an instance of Vmcs object.
-	 * @param propertiesFile the properties file name.
-	 */
-	private Vmcs(String propertiesFile) {
-		this.propertiesFile = propertiesFile;
-	}
+    /**
+     * This constructor creates an instance of Vmcs object.
+     * @param propertiesFile the properties file name.
+     */
+    private Vmcs(String propertiesFile) {
+        this.propertiesFile = propertiesFile;
+    }
 
-	/**
-	 * This method start the MainController.
-	 */
-	public void start() {
-		MainController mc = new MainController(propertiesFile);
-		try {
-			mc.start();
-		} catch (VMCSException e) {
-			System.out.println("Vmcs.start: Error in system initialization: "+ e.getMessage());
-			System.exit(0);
-		}
-	}
+    /**
+     * This method start the MainController.
+     */
+    public void start() {
+        MainController mc = new MainController(propertiesFile);
+        try {
+                mc.start();
+        } catch (VMCSException e) {
+                System.out.println("Vmcs.start: Error in system initialization: "+ e.getMessage());
+                System.exit(0);
+        }
+    }
 
-	/**
-	 * Main entry point.
-	 * @param args the arguments for the main application.
-	 */
-	public static void main(String args[]) {
-		Vmcs vmcs = new Vmcs(args[0]);
-		vmcs.start();
-	}
+    /**
+     * Main entry point.
+     * @param args the arguments for the main application.
+     */
+    public static void main(String args[]) {
+        if (args.length == 0) {
+            System.out.println("Error:: VMCS properties file not specified.");
+            System.out.println("Usage:: vmcs vmcs.properties");
+            return;
+        }
+        Vmcs vmcs = new Vmcs(args[0]);
+        vmcs.start();
+    }
 }//End of class Vmcs
