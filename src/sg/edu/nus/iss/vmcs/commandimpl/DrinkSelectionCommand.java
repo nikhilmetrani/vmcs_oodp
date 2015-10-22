@@ -6,26 +6,21 @@ import java.awt.Color;
 import sg.edu.nus.iss.vmcs.command.*;
 import sg.edu.nus.iss.vmcs.customer.TransactionController;
 
-
-
-public class DrinkSelectionCommand implements Command{
+public class DrinkSelectionCommand implements Command {
 	
-	private Button button;
+	public static final String COMMAND_NAME = "drinkSelection";
+	
 	private TransactionController transactionController;
-	private int drinkIdentifier;
 
-	public DrinkSelectionCommand(Button button,
-			TransactionController transactionController, int drinkIdentifier) {
-		super();
-		this.button = button;
+	public DrinkSelectionCommand(TransactionController transactionController) {
 		this.transactionController = transactionController;
-		this.drinkIdentifier = drinkIdentifier;
 	}
 
 	@Override
-	public void execute() {
+	public void execute(CommandParam object) {
+		Button button = (Button)object.getSource();
 		button.requestFocus();
-		transactionController.startTransaction(drinkIdentifier);
+		transactionController.startTransaction(object.getItemNumber());
 		button.setBackground(Color.yellow);
 	}
 

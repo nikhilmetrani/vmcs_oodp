@@ -47,6 +47,8 @@ public class DrinkSelectionBox extends Panel{
 		
 		drinkSelectionItems=new DrinkSelectionItem[drinkStoreSize];
 		
+		Invoker.getInstance().addCommand(DrinkSelectionCommand.COMMAND_NAME, new DrinkSelectionCommand(txCtrl));
+		
 		setLayout(new GridBagLayout());
 		for(int i=0;i<drinkStoreItems.length;i++){
 			StoreItem storeItem=drinkStoreItems[i];
@@ -59,9 +61,8 @@ public class DrinkSelectionBox extends Panel{
 			drinkSelectionItems[i]=new DrinkSelectionItem(i,drinksName,drinksPrice,drinksQuantity,true,false);
 			//Comment Below old Line
 			//drinkSelectionItems[i].addListener(new DrinkSelectionListener(txCtrl,i));
-			DrinkSelectionCommand command = new DrinkSelectionCommand(drinkSelectionItems[i].getButton(), txCtrl, i);
-			drinkSelectionItems[i].addListener(new CommandActionListener(
-					command));
+			CommandParam commandParam = new CommandParam(drinkSelectionItems[i].getButton(), i);
+			drinkSelectionItems[i].addListener(new CommandActionListener(DrinkSelectionCommand.COMMAND_NAME, commandParam));
 			add(drinkSelectionItems[i],new GridBagConstraints(0,i,1,1,1.0,0.0,
 				    GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
 				    new Insets(5,0,0,0),10,0));  

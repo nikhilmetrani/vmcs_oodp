@@ -12,6 +12,8 @@ import sg.edu.nus.iss.vmcs.commandimpl.*;
 import sg.edu.nus.iss.vmcs.store.*;
 import sg.edu.nus.iss.vmcs.util.*;
 import sg.edu.nus.iss.vmcs.action.*;
+import sg.edu.nus.iss.vmcs.command.CommandParam;
+import sg.edu.nus.iss.vmcs.command.Invoker;
 
 /**
  * This boundary object displays the contents of a store (DrinksStore or CashStore) and
@@ -60,7 +62,7 @@ public class StoreViewer extends Panel {
 		StoreItem[] storeItem = storeCtrl.getStoreItems(type);
 		this.setLayout(new GridLayout(0, 1));
 		this.add(pl);
-
+		Invoker.getInstance().addCommand(ChangeStoreQtyCommand.COMMAND_NAME, new ChangeStoreQtyCommand(type,storeCtrl));
 		for (int i = 0; i < sSize; i++) {
 			String name = storeItem[i].getContent().getName();
 			viewItems[i] = new LabelledDisplay(name,
@@ -69,7 +71,8 @@ public class StoreViewer extends Panel {
 			//Comment below old code
 			//viewItems[i].addListener(new StoreViewerListener(type, i, storeCtrl));
 			storeItem[i].attach(viewItems[i]); // attach observer
-			viewItems[i].addListener(new CommandActionListener(new ChangeStoreQtyCommand(type,i,storeCtrl,viewItems[i].getValue())));
+			CommandParam commandParam = new CommandParam(viewItems[i].getValue(), i);
+			viewItems[i].addListener(new CommandActionListener(ChangeStoreQtyCommand.COMMAND_NAME, commandParam));
 			this.add(viewItems[i]);
 		}
 	}
