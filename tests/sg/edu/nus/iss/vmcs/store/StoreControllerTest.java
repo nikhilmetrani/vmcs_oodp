@@ -27,13 +27,13 @@ public class StoreControllerTest extends TestCase{
 	public void testStoreControllerConstructor() throws Exception{
 		Environment.initialize(propertyFilename);
 		CashPropertyLoader cashLoader =
-			new CashPropertyLoader(Environment.getCashPropFile());
+			new CashPropertyLoader();
 		DrinkPropertyLoader drinksLoader =
-			new DrinkPropertyLoader(Environment.getDrinkPropFile());
+			new DrinkPropertyLoader();
 		cashLoader.initialize();
 		drinksLoader.initialize();
 		//Act
-		StoreController storeController=new StoreController(cashLoader, drinksLoader);
+		StoreController storeController=StoreController.getInstance();
 		storeController.initialize();
 		//Assert
 		assertNotNull(storeController);

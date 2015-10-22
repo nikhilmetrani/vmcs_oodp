@@ -68,7 +68,7 @@ public class StoreController {
 	 * This method instantiate the {@link CashStore}, {@link DrinksStore} and initialize it.
 	 * @throws IOException if fail to initialize stores; reading properties.
 	 */
-	private void initialize() throws IOException {
+	public void initialize() throws IOException {
 		cStore = new CashStore();
 		dStore = new DrinksStore();
 		initializeStores();
