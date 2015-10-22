@@ -87,8 +87,8 @@ public class MaintenanceController {
 	 * ActivateCustomerPanelButton&#46;
 	 * <br>
 	 * 4- The TransactionController will be instructed to terminate and suspend
-	 * Customer Transactions&#46 Operation TerminateTransaction of TransactionController
-	 * will be used to accomplish this&#46
+	 * Customer Transactions&#46; Operation TerminateTransaction of TransactionController
+	 * will be used to accomplish this&#46;
 	 * @param st If TRUE then login successfully, otherwise login fails.
 	 */
 	public void loginMaintainer(boolean st) {
@@ -106,7 +106,7 @@ public class MaintenanceController {
 	}
 
 	/**
-	 * This method will be used to get the total number of coins of a selected denomination&#46
+	 * This method will be used to get the total number of coins of a selected denomination&#46;
 	 * This method invoked in CoinDisplayListener.
 	 * @param idx the index of the Coin.
 	 */
@@ -124,7 +124,7 @@ public class MaintenanceController {
 
 	/**
 	 * This method will get the drink stock value and prices (for a specific brand) for
-	 * display&#46
+	 * display&#46;
 	 * This method invoked in DrinkDisplayListener.
 	 * @param idx the index of the drinks.
 	 */
@@ -154,7 +154,7 @@ public class MaintenanceController {
 	}
 
 	/**
-	 * This method sends the total cash held in the CashStore to the MaintenancePanel&#46
+	 * This method sends the total cash held in the CashStore to the MaintenancePanel&#46;
 	 * This method is invoked by the TotalCashButtonListener.
 	 */
 	public void getTotalCash() {
@@ -165,8 +165,8 @@ public class MaintenanceController {
 	}
 
 	/**
-	 * This method is to facilitate the transfer of all cash in CashStore to the maintainer&#46
-	 * This method is invoked by the TransferCashButtonListener&#46
+	 * This method is to facilitate the transfer of all cash in CashStore to the maintainer&#46;
+	 * This method is invoked by the TransferCashButtonListener&#46;
 	 * It get all the cash from store and set store cash 0.
 	 */
 	public void transferAll() {
@@ -195,11 +195,11 @@ public class MaintenanceController {
 	 * has correctly logged-out, the following will occur:
 	 * <br>
 	 * 1- Check the door status of Door to determine whether the vending machine
-	 * door is locked&#46 if the door is unlocked, then the exit request is ignored&#46
+	 * door is locked&#46; if the door is unlocked, then the exit request is ignored&#46;
 	 * <br>
-	 * 2- Re-set the MaintenancePanel (initial values set, buttons activated/ deactivated)&#46
+	 * 2- Re-set the MaintenancePanel (initial values set, buttons activated/ deactivated)&#46;
 	 * <br>
-	 * 3- Update the CustomerPanel and permit Customer transaction to re-start&#46
+	 * 3- Update the CustomerPanel and permit Customer transaction to re-start&#46;
 	 * This method is invoked by the exit button listener.
 	 */
 	public void logoutMaintainer() {
@@ -230,7 +230,7 @@ public class MaintenanceController {
 	}
 
 	/**
-	 * This method will close down the maintenance functions of the vending machine&#46
+	 * This method will close down the maintenance functions of the vending machine&#46;
 	 * This method close down the MaintenancePanel.
 	 */
 	public void closeDown() {

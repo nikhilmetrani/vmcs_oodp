@@ -25,7 +25,6 @@ public class DrinkPropertyLoader extends AbstractPropertyLoader {
 
 	/**
 	 * This constructor creates an instance of the DrinkPropertyLoader object.
-	 * @param filen the file name of the drink property file.
 	 */
 	public DrinkPropertyLoader() {
 		super(Environment.getDrinkPropFile());

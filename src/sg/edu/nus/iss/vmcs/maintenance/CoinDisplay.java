@@ -71,7 +71,7 @@ public class CoinDisplay extends Panel {
 	}
 
 	/**
-	 * Get the current displayed coin index&#46 This is used for updating when store MachinerySimulatorPanel is changed.
+	 * Get the current displayed coin index&#46; This is used for updating when store MachinerySimulatorPanel is changed.
 	 * Not required.
 	 */
 	public int getCurIdx() {

@@ -26,7 +26,6 @@ public class CashPropertyLoader extends AbstractPropertyLoader {
 
 	/**
 	 * This constructor creates an instance of CashPropertyLoader object.
-	 * @param filen the name of the cash property file.
 	 */
 	public CashPropertyLoader() {
 		super(Environment.getCashPropFile());
