@@ -11,3 +11,6 @@ VMCS/nbproject/genfiles.properties
 VMCS/nbproject/project.properties
 VMCS/nbproject/project.xml
 manifest.mf
+/bin/
+.project
+.classpath

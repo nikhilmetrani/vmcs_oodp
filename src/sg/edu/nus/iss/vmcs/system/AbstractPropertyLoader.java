@@ -7,6 +7,8 @@
  */
 package sg.edu.nus.iss.vmcs.system;
 
+import java.io.IOException;
+
 /*
  * Copyright 2003 ISS.
  * The contents contained in this document may not be reproduced in any
@@ -14,11 +16,13 @@ package sg.edu.nus.iss.vmcs.system;
  * than for the purpose for which it has been supplied.
  *
  */
+import java.util.Properties;
 
-import java.util.*;
-import java.io.*;
-
-import sg.edu.nus.iss.vmcs.store.*;
+import sg.edu.nus.iss.vmcs.data.DataStore;
+import sg.edu.nus.iss.vmcs.data.PropertyDataStore;
+import sg.edu.nus.iss.vmcs.data.XMLDataStore;
+import sg.edu.nus.iss.vmcs.store.PropertyLoader;
+import sg.edu.nus.iss.vmcs.store.StoreItem;
 
 /**
  * This control object implements the interface, PropertyLoader, to provide the generic functionality
@@ -28,18 +32,36 @@ import sg.edu.nus.iss.vmcs.store.*;
  * @author Olivo Miotto, Pang Ping Li
  */
 
-public abstract class FilePropertyLoader implements PropertyLoader {
+public abstract class AbstractPropertyLoader implements PropertyLoader {
 	private static final String PROP_NUM_ITEMS = "NumOfItems";
 
 	private Properties prop;
-	private String fileName;
+	private DataStore dataStore;
 
 	/**
 	 * This constructor creates an instance of the FilePropertyLoader object.
 	 * @param fileName the filename of the property file.
 	 */
-	public FilePropertyLoader(String fileName) {
-		this.fileName = fileName;
+	public AbstractPropertyLoader(String fileName) {
+		this.dataStore = getDataStore(fileName);
+	}
+	
+	/**
+	 * This methos creates relevant DataStore implementation based on dataStore type
+	 * @param fileName
+	 * @return
+	 */
+	private DataStore getDataStore(String fileName) {
+		DataStore result = null;
+		String dataStoreType = Environment.getDataStoreType();
+		if("PROP".equalsIgnoreCase(dataStoreType)){
+			result = new PropertyDataStore(fileName);
+		} else if("XML".equalsIgnoreCase(dataStoreType)) {
+			result = new XMLDataStore(fileName);
+		} else {
+			throw new RuntimeException("DataStore not defined, dataStoreType : " + dataStoreType);
+		}
+		return result;
 	}
 
 	/**
@@ -48,9 +70,7 @@ public abstract class FilePropertyLoader implements PropertyLoader {
 	 */
 	public void initialize() throws IOException {
 		prop = new Properties(System.getProperties());
-		FileInputStream stream = new FileInputStream(fileName);
-		prop.load(stream);
-		stream.close();
+		dataStore.initialize(prop);
 	}
 
 	/**
@@ -58,9 +78,7 @@ public abstract class FilePropertyLoader implements PropertyLoader {
 	 * @throws IOException if fail to store properties to properties file.
 	 */
 	public void saveProperty() throws IOException {
-		FileOutputStream stream = new FileOutputStream(fileName);
-		prop.store(stream, "");
-		stream.close();
+		dataStore.saveProperties(prop);
 	}
 
 	/**

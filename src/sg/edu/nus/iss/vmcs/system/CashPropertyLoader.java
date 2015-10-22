@@ -17,7 +17,7 @@ import sg.edu.nus.iss.vmcs.store.*;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class CashPropertyLoader extends FilePropertyLoader {
+public class CashPropertyLoader extends AbstractPropertyLoader {
 
 	private static final String NAME_LABEL     = "Name";
 	private static final String WEIGHT_LABEL   = "Weight";
@@ -28,8 +28,8 @@ public class CashPropertyLoader extends FilePropertyLoader {
 	 * This constructor creates an instance of CashPropertyLoader object.
 	 * @param filen the name of the cash property file.
 	 */
-	public CashPropertyLoader(String filen) {
-		super(filen);
+	public CashPropertyLoader() {
+		super(Environment.getCashPropFile());
 	}
 
 	/**
