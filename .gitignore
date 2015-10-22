@@ -3,3 +3,11 @@
 /build/
 /VMCS/build/
 /VMCS/dist/
+VMCS/documents/Main.jpg
+VMCS/manifest.mf
+VMCS/nbbuild.xml
+VMCS/nbproject/build-impl.xml
+VMCS/nbproject/genfiles.properties
+VMCS/nbproject/project.properties
+VMCS/nbproject/project.xml
+manifest.mf
