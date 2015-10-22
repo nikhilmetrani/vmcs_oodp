@@ -9,6 +9,10 @@ package sg.edu.nus.iss.vmcs.maintenance;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import sg.edu.nus.iss.vmcs.observer.pattern.Observable;
 import sg.edu.nus.iss.vmcs.observer.pattern.Observer;
@@ -117,8 +121,15 @@ public class ButtonItem extends Panel implements Observer {
 
 	@Override
 	public void update(Observable observable) {
-		setValue(observable.getPropertyValue());
-		System.out.printf("Maintenance %s update: %d\n", btn.getLabel(), observable.getPropertyValue());
+        try {
+            Method method = observable.getClass().getMethod("getQuantity");
+            int quantity;
+            quantity = (int) method.invoke((Object)observable);
+            setValue(quantity);
+            System.out.printf("Maintenance %s update: %d\n", btn.getLabel(), quantity);
+        } catch (SecurityException | IllegalArgumentException | IllegalAccessException | InvocationTargetException | NoSuchMethodException ex) {
+            Logger.getLogger(ButtonItem.class.getName()).log(Level.SEVERE, null, ex);
+        }
 	}
 	
 }//End of class ButtonItem

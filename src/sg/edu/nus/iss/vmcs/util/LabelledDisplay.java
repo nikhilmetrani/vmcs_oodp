@@ -14,6 +14,10 @@ import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextField;
 import java.awt.event.ActionListener;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import sg.edu.nus.iss.vmcs.observer.pattern.Observable;
 import sg.edu.nus.iss.vmcs.observer.pattern.Observer;
@@ -129,7 +133,14 @@ public class LabelledDisplay extends Panel implements Observer {
 
 	@Override
 	public void update(Observable observable) {
-		setValue(observable.getPropertyValue());
-		System.out.printf("Machinery %s update: %d\n", lb.getText(), observable.getPropertyValue());
-	}
+        try {
+            Method method = observable.getClass().getMethod("getQuantity");
+            int quantity;
+            quantity = (int) method.invoke((Object)observable);
+            setValue(quantity);
+            System.out.printf("Machinery %s update: %d\n", lb.getText(), quantity);
+        } catch (NoSuchMethodException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+            Logger.getLogger(LabelledDisplay.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }//End of class LabelledDisplay

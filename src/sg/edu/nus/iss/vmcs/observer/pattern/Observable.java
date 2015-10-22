@@ -62,10 +62,4 @@ public abstract class Observable {
             if (null != o) o.update(this);
         }
     }
-
-    /**
-     * A means for all Observers to know the changed property without knowing the concrete Observable object. Must be implemented by all classes that intend to be Observable.
-     * @return New property value.
-     */
-    public abstract int getPropertyValue();
 }
