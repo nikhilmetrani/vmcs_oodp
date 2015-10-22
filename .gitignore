@@ -3,3 +3,6 @@
 /build/
 /VMCS/build/
 /VMCS/dist/
+/bin/
+.project
+.classpath

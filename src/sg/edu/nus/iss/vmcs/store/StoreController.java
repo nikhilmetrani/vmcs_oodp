@@ -9,6 +9,9 @@ package sg.edu.nus.iss.vmcs.store;
 
 import java.io.IOException;
 
+import sg.edu.nus.iss.vmcs.system.CashPropertyLoader;
+import sg.edu.nus.iss.vmcs.system.DrinkPropertyLoader;
+
 /**
  * This control object manages changes in CashStore attributes and 
  * the DrinksStore attributes.
@@ -27,6 +30,9 @@ import java.io.IOException;
  * @author Olivo Miotto, Pang Ping Li
  */
 public class StoreController {
+	
+	private static StoreController instance = null;
+	
 	private CashStore cStore;
 	private DrinksStore dStore;
 
@@ -37,19 +43,32 @@ public class StoreController {
 	 * This constructor creates an instance of StoreController object.
 	 * @param cashLoader the cash loader.
 	 * @param drinksLoader the drinks loader.
+	 * @throws IOException 
 	 */
-	public StoreController(
-		PropertyLoader cashLoader,
-		PropertyLoader drinksLoader) {
-		this.cashLoader = cashLoader;
-		this.drinksLoader = drinksLoader;
+	private StoreController() throws IOException {
+		cashLoader = new CashPropertyLoader();
+		drinksLoader = new DrinkPropertyLoader();
+		cashLoader.initialize();
+		drinksLoader.initialize();
+		initialize();
 	}
-
+	
+	public static StoreController getInstance() throws IOException{
+		if(instance == null){
+			synchronized (StoreController.class) {
+				if(instance == null){
+					instance = new StoreController();
+				}
+			} 
+		}
+		return instance;
+	}
+	
 	/**
 	 * This method instantiate the {@link CashStore}, {@link DrinksStore} and initialize it.
 	 * @throws IOException if fail to initialize stores; reading properties.
 	 */
-	public void initialize() throws IOException {
+	private void initialize() throws IOException {
 		cStore = new CashStore();
 		dStore = new DrinksStore();
 		initializeStores();

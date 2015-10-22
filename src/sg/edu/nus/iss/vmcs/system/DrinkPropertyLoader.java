@@ -17,7 +17,7 @@ import sg.edu.nus.iss.vmcs.store.*;
  * @author Olivo Miotto, Pang Ping Li
  */
 
-public class DrinkPropertyLoader extends FilePropertyLoader {
+public class DrinkPropertyLoader extends AbstractPropertyLoader {
 
 	private static final String NAME_LABEL     = "Name";
 	private static final String PRICE_LABEL    = "Price";
@@ -27,8 +27,8 @@ public class DrinkPropertyLoader extends FilePropertyLoader {
 	 * This constructor creates an instance of the DrinkPropertyLoader object.
 	 * @param filen the file name of the drink property file.
 	 */
-	public DrinkPropertyLoader(String filen) {
-		super(filen);
+	public DrinkPropertyLoader() {
+		super(Environment.getDrinkPropFile());
 	}
 
 	/**

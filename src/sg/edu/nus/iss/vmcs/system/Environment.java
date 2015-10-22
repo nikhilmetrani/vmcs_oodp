@@ -25,6 +25,8 @@ public class Environment {
 	public final static String CASH_PROP_FILE = "cashFile";
 	/**This constant attribute denotes the password string*/
 	public final static String PASSWORD = "password";
+	/**This constant attribute identify the datastore type*/
+	public final static String DATASTORE_TYPE = "datastoreType";
 
 	private static Properties prop;
 
@@ -72,4 +74,13 @@ public class Environment {
 	public static String getPassword() {
 		return prop.getProperty(PASSWORD);
 	}
+	
+	/**
+	 * if you put datastore type in the property file, the datastore type is obtained here.
+	 * @return the datastore type
+	 */
+	public static String getDataStoreType() {
+		return prop.getProperty(DATASTORE_TYPE);
+	}
+	
 }//End of class Environment
