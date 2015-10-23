@@ -14,8 +14,8 @@ package sg.edu.nus.iss.vmcs.observer.pattern;
  */
 public interface Observer {
     /**
-     * Method called by the observable to notify changes in its state. This must be implemented by all concrete observers
-     * @param observable The object whose state was changed.
+     * Method called by the changedSubject to notify changes in its state. This must be implemented by all concrete observers
+     * @param changedSubject The object whose state was changed.
      */
-	public void update(Observable observable);
+	public void update(Subject changedSubject);
 }

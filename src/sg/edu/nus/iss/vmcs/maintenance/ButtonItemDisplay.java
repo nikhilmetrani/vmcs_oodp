@@ -7,7 +7,7 @@
  */
 package sg.edu.nus.iss.vmcs.maintenance;
 
-import sg.edu.nus.iss.vmcs.observer.pattern.Observable;
+import sg.edu.nus.iss.vmcs.observer.pattern.Subject;
 import sg.edu.nus.iss.vmcs.observer.pattern.Observer;
 import java.awt.event.*;
 import java.awt.*;
@@ -55,12 +55,20 @@ public class ButtonItemDisplay extends Panel implements Observer {
 					ob.getName(),
 					ButtonItem.DEFAULT_LEN,
 					ButtonItem.GRID);
-			sitem[i].attach(this); //This is necessary only to clear the button items.
+			attachSelfToSubject(sitem[i]); //This is necessary only to clear the button items.
 			sitem[i].attach(items[i]); //Actual value update
                         this.add(items[i]);
 		}
 	}
-
+    
+    /**
+     * Added to fix warning "Passing suspicious parameter in constructor."
+     * @param subjectToObserve 
+     */
+    private void attachSelfToSubject(Subject subjectToObserve) {
+        subjectToObserve.attach(this);
+    }
+    
 	/**
 	 * This method attaches a listener to the ButtonItemDisplay.
 	 * @param l the ActionListener.
@@ -114,7 +122,7 @@ public class ButtonItemDisplay extends Panel implements Observer {
 	}
 
 	@Override
-	public void update(Observable observable) {
+	public void update(Subject changedSubject) {
 		clear();
 		System.out.println("ButtonItemDisplay clear");
 	}

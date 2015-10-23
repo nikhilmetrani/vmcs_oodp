@@ -19,7 +19,7 @@ import java.lang.reflect.Method;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import sg.edu.nus.iss.vmcs.observer.pattern.Observable;
+import sg.edu.nus.iss.vmcs.observer.pattern.Subject;
 import sg.edu.nus.iss.vmcs.observer.pattern.Observer;
 
 /**
@@ -44,6 +44,7 @@ public class LabelledDisplay extends Panel implements Observer {
 	 * @param label the label name.
 	 * @param length the length of the text field.
 	 * @param lt the layout of the display.
+     * @param subjectToObserve The subject that needs to be observed
 	 */
 	public LabelledDisplay(String label, int length, int lt) {
 
@@ -132,11 +133,11 @@ public class LabelledDisplay extends Panel implements Observer {
 	}
 
 	@Override
-	public void update(Observable observable) {
+	public void update(Subject changedSubject) {
         try {
-            Method method = observable.getClass().getMethod("getQuantity");
+            Method method = changedSubject.getClass().getMethod("getQuantity");
             int quantity;
-            quantity = (int) method.invoke((Object)observable);
+            quantity = (int) method.invoke((Object)changedSubject);
             setValue(quantity);
             System.out.printf("Machinery %s update: %d\n", lb.getText(), quantity);
         } catch (NoSuchMethodException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {

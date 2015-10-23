@@ -7,7 +7,7 @@
  */
 package sg.edu.nus.iss.vmcs.store;
 
-import sg.edu.nus.iss.vmcs.observer.pattern.Observable;
+import sg.edu.nus.iss.vmcs.observer.pattern.Subject;
 
 /**
  * This entity object implements a generic storage item class&#46; It performs actions like;
@@ -27,7 +27,7 @@ import sg.edu.nus.iss.vmcs.observer.pattern.Observable;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class StoreItem extends Observable {
+public class StoreItem extends Subject {
 	private StoreObject content;
 	private int quantity;
 

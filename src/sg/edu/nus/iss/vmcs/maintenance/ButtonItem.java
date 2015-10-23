@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import sg.edu.nus.iss.vmcs.observer.pattern.Observable;
+import sg.edu.nus.iss.vmcs.observer.pattern.Subject;
 import sg.edu.nus.iss.vmcs.observer.pattern.Observer;
 
 /**
@@ -36,7 +36,6 @@ public class ButtonItem extends Panel implements Observer {
 
 	private Button btn;
 	private Label value;
-
 	/**
 	 * This constructor create an instance of ButtonItem object.
 	 * @param bn the button name.
@@ -56,7 +55,7 @@ public class ButtonItem extends Panel implements Observer {
 		this.add(btn);
 		this.add(value);
 	}
-
+    
 	/**
 	 * This method attach a listener to ButtonItem.
 	 * @param l the ActionListener.
@@ -120,11 +119,11 @@ public class ButtonItem extends Panel implements Observer {
 	}
 
 	@Override
-	public void update(Observable observable) {
+	public void update(Subject changedSubject) {
         try {
-            Method method = observable.getClass().getMethod("getQuantity");
+            Method method = changedSubject.getClass().getMethod("getQuantity");
             int quantity;
-            quantity = (int) method.invoke((Object)observable);
+            quantity = (int) method.invoke((Object)changedSubject);
             setValue(quantity);
             System.out.printf("Maintenance %s update: %d\n", btn.getLabel(), quantity);
         } catch (SecurityException | IllegalArgumentException | IllegalAccessException | InvocationTargetException | NoSuchMethodException ex) {
