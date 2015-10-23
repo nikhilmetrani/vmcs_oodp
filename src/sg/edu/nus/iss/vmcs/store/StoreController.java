@@ -9,6 +9,7 @@ package sg.edu.nus.iss.vmcs.store;
 
 import java.io.IOException;
 
+import sg.edu.nus.iss.vmcs.store.Store.StoreMemento;
 import sg.edu.nus.iss.vmcs.system.CashPropertyLoader;
 import sg.edu.nus.iss.vmcs.system.DrinkPropertyLoader;
 
@@ -325,5 +326,15 @@ public class StoreController {
 		item = (CashStoreItem) getStoreItem(Store.CASH, idx);
 		for (int i = 0; i < numOfCoins; i++)
 			item.decrement();
+	}
+
+	public StoreMemento createStoreMemento(int type) {
+		Store store = getStore(type);
+		return store.createMemento();
+	}
+
+	public void CopyFromMemento(int type, StoreMemento storeMemento) {
+		Store store = getStore(type);
+		store.CopyFromMemento(storeMemento);
 	}
 }//End of class StoreController

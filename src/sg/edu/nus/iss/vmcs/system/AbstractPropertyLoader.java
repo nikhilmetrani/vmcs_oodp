@@ -69,7 +69,7 @@ public abstract class AbstractPropertyLoader implements PropertyLoader {
 	 * @throws IOException if fail to load properties from properties file.
 	 */
 	public void initialize() throws IOException {
-		prop = new Properties(System.getProperties());
+		prop = new Properties();
 		dataStore.initialize(prop);
 	}
 

@@ -27,7 +27,7 @@ import sg.edu.nus.iss.vmcs.observer.pattern.Subject;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class StoreItem extends Subject {
+public class StoreItem extends Subject implements Cloneable {
 	private StoreObject content;
 	private int quantity;
 
@@ -98,5 +98,10 @@ public class StoreItem extends Subject {
 	public void increment() {
 		quantity++;
 		notifyChange();
+	}
+	
+	@Override
+	public StoreItem clone() throws CloneNotSupportedException{
+		return (StoreItem) super.clone();
 	}
 }//End of class StoreItem

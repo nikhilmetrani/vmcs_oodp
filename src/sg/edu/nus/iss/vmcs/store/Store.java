@@ -131,4 +131,45 @@ public abstract class Store {
 	public int getStoreSize() {
 		return size;
 	}
+	
+	/**
+	 * This method is used for creating store memento
+	 * @return
+	 */
+	public StoreMemento createMemento(){
+		return new StoreMemento(items);
+	}
+	
+	/**
+	 * This method restore the store object from memento
+	 * @param memento
+	 */
+	public void CopyFromMemento(StoreMemento memento){
+		this.items = memento.storeItems;
+	}
+	
+	/**
+	 * This class represents the store classes memento. 
+	 * @author barlam
+	 *
+	 */
+	
+	public class StoreMemento {
+		private StoreItem storeItems[];
+		
+		StoreMemento(StoreItem items[]) {
+			if(items != null){
+				storeItems = new StoreItem[items.length];
+				int i=0;
+				for(StoreItem sItem : items){
+					try {
+						storeItems[i++] = sItem.clone();
+					} catch (CloneNotSupportedException e) {
+						System.out.println("Clone not supported, obj : " + sItem);
+					}  
+				}
+			}
+		}
+	}
+	
 }//End of class Store
