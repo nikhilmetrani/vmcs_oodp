@@ -24,7 +24,7 @@ package sg.edu.nus.iss.vmcs.store;
  * @author Olivo Miotto, Pang Ping Li
  */
 
-public class StoreObject {
+public class StoreObject implements Cloneable {
 	String name;
 
 	/**

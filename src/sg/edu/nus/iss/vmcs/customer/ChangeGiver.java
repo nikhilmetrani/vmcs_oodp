@@ -10,6 +10,7 @@ package sg.edu.nus.iss.vmcs.customer;
 import sg.edu.nus.iss.vmcs.store.CashStoreItem;
 import sg.edu.nus.iss.vmcs.store.Coin;
 import sg.edu.nus.iss.vmcs.store.Store;
+import sg.edu.nus.iss.vmcs.store.Store.StoreMemento;
 import sg.edu.nus.iss.vmcs.store.StoreController;
 import sg.edu.nus.iss.vmcs.store.StoreItem;
 import sg.edu.nus.iss.vmcs.system.MainController;
@@ -50,10 +51,11 @@ public class ChangeGiver {
 	public boolean giveChange(int changeRequired){
 		if(changeRequired==0)
 			return true;
+		MainController mainCtrl=txCtrl.getMainController();
+		StoreController storeCtrl=mainCtrl.getStoreController();
+		StoreMemento storeMemento = storeCtrl.createStoreMemento(Store.CASH);
 		try{
 			int changeBal=changeRequired;
-			MainController mainCtrl=txCtrl.getMainController();
-			StoreController storeCtrl=mainCtrl.getStoreController();
 			int cashStoreSize=storeCtrl.getStoreSize(Store.CASH); 
 			for(int i=cashStoreSize-1;i>=0;i--){
 				StoreItem cashStoreItem=storeCtrl.getStore(Store.CASH).getStoreItem(i);
@@ -73,6 +75,7 @@ public class ChangeGiver {
 				txCtrl.getCustomerPanel().displayChangeStatus(true);
 		}
 		catch(VMCSException ex){
+			storeCtrl.CopyFromMemento(Store.CASH, storeMemento);
 			txCtrl.terminateFault();
 			return false;
 		}

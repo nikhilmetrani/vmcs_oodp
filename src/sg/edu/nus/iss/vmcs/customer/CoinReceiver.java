@@ -13,6 +13,9 @@ import sg.edu.nus.iss.vmcs.machinery.MachineryController;
 import sg.edu.nus.iss.vmcs.store.CashStore;
 import sg.edu.nus.iss.vmcs.store.Coin;
 import sg.edu.nus.iss.vmcs.store.Store;
+import sg.edu.nus.iss.vmcs.store.StoreController;
+import sg.edu.nus.iss.vmcs.store.Store.StoreMemento;
+import sg.edu.nus.iss.vmcs.system.MainController;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
 
 /**
@@ -107,7 +110,10 @@ public class CoinReceiver {
 	 * @return return TRUE if cash has been stored, else return FALSE.
 	 */
 	public boolean storeCash(){
-		MachineryController machineryCtrl=txCtrl.getMainController().getMachineryController();
+		MainController mainCtrl=txCtrl.getMainController();
+		StoreController storeCtrl=mainCtrl.getStoreController();
+		MachineryController machineryCtrl=mainCtrl.getMachineryController();
+		StoreMemento storeMemento = storeCtrl.createStoreMemento(Store.CASH);
 		try{
 			for(int i=0;i<arlCoins.size();i++){
 				Coin coin=(Coin)arlCoins.get(i);
@@ -117,6 +123,7 @@ public class CoinReceiver {
 			txCtrl.getCustomerPanel().setTotalMoneyInserted(0);
 		}
 		catch(VMCSException ex){
+			storeCtrl.CopyFromMemento(Store.CASH, storeMemento);
 			txCtrl.terminateFault();
 			return false;
 		}
