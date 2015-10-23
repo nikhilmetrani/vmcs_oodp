@@ -63,7 +63,7 @@ public class StoreItem extends Subject {
 	 */
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
-		notifyPropertyChange();
+		notifyChange();
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class StoreItem extends Subject {
 	 */
 	public void store() {
 		quantity++;
-		notifyPropertyChange();
+		notifyChange();
 	}
 	
 	/**
@@ -89,7 +89,7 @@ public class StoreItem extends Subject {
 		quantity--;
 		if (quantity < 0)
 			quantity = 0;
-		notifyPropertyChange();
+		notifyChange();
 	}
 
 	/**
@@ -97,6 +97,6 @@ public class StoreItem extends Subject {
 	 */
 	public void increment() {
 		quantity++;
-		notifyPropertyChange();
+		notifyChange();
 	}
 }//End of class StoreItem

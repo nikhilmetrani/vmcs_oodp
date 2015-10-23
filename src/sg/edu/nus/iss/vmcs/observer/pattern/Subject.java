@@ -57,7 +57,7 @@ public abstract class Subject {
      * Notifies all concrete observers that the state has been changed. Sends a reference of itself so that the Observer is aware or which object changed. <br>
  Note that concrete subjects must invoke this method whenever there is a change in state.
      */
-    public void notifyPropertyChange() {
+    public void notifyChange() {
         for (Observer o: observers) {
             if (null != o) o.update(this);
         }
