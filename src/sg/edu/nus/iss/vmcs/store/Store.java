@@ -7,6 +7,9 @@
  */
 package sg.edu.nus.iss.vmcs.store;
 
+import sg.edu.nus.iss.vmcs.iterator.Container;
+import sg.edu.nus.iss.vmcs.iterator.Iterator;
+
 /**
  * This entity object implements a generic Store&#46; It has methods to load (add) {@link StoreItem}
  * into the Store and release {@link StoreItem} from the Store.
@@ -24,7 +27,7 @@ package sg.edu.nus.iss.vmcs.store;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public abstract class Store {
+public abstract class Store  implements Container {
 	/**This constant attribute represent Cash*/
 	public final static int CASH  = 1;
 	/**This constant attribute represnet Drink*/
@@ -49,6 +52,28 @@ public abstract class Store {
 		items = new StoreItem[size];
 	}
 
+	public Iterator getIterator() {
+		return new StoreIterator();	
+	}
+	
+	private class StoreIterator implements Iterator {
+		int index;
+		@Override
+		public boolean hasNext() {
+			if(index < items.length){
+	            return true;
+	         }
+	         return false;			
+		}
+		
+		public Object next() {
+			if(this.hasNext()){
+				return items[index++];				
+			}
+			return null;		
+		}
+	}
+        
 	/**
 	 * This method sets the size of the items array in the Store.
 	 * @param sz the store size.

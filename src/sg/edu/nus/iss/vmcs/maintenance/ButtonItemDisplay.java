@@ -11,6 +11,7 @@ import sg.edu.nus.iss.vmcs.observer.pattern.Subject;
 import sg.edu.nus.iss.vmcs.observer.pattern.Observer;
 import java.awt.event.*;
 import java.awt.*;
+import sg.edu.nus.iss.vmcs.iterator.Iterator;
 
 import sg.edu.nus.iss.vmcs.store.*;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
@@ -32,7 +33,7 @@ public class ButtonItemDisplay extends Panel implements Observer {
 	 * @param sitem the array of StoreObject.
 	 * @param length the length of StoreObject array.
 	 */
-	public ButtonItemDisplay(String title, StoreItem sitem[], int length) {
+	public ButtonItemDisplay(String title, Store store, int length) {
 
 		len = length;
 		Panel tp1 = new Panel();
@@ -44,22 +45,26 @@ public class ButtonItemDisplay extends Panel implements Observer {
 
 		this.add(tp1);
 
-		int i;
+		int i = 0;
 		items = new ButtonItem[len];
 
-		for (i = 0; i < len; i++) {
-			StoreObject ob = sitem[i].getContent();
+		Iterator iterator=store.getIterator();
+		while(iterator.hasNext())
+		{
+			StoreItem storeItem =(StoreItem) iterator.next();
+			StoreObject ob = storeItem.getContent();
 
 			items[i] =
 				new ButtonItem(
 					ob.getName(),
 					ButtonItem.DEFAULT_LEN,
 					ButtonItem.GRID);
-			attachSelfToSubject(sitem[i]); //This is necessary only to clear the button items.
-                        updateSelf(sitem[i]);
-			sitem[i].attach(items[i]); //Actual value update
-                        items[i].update(sitem[i]); //Show value
+			attachSelfToSubject(storeItem); //This is necessary only to clear the button items.
+                        updateSelf(storeItem);
+			storeItem.attach(items[i]); //Actual value update
+                        items[i].update(storeItem); //Show value
                         this.add(items[i]);
+                        i++;
 		}
 	}
     

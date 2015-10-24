@@ -7,6 +7,8 @@
  */
 package sg.edu.nus.iss.vmcs.store;
 
+import sg.edu.nus.iss.vmcs.iterator.Iterator;
+
 /**
  * This object represents the store of cash in the vending machine.
  * 
@@ -39,13 +41,15 @@ public class CashStore extends Store {
 	 * @return the index of the given Coin&#46; Return -1 if unknown Coin is detected.
 	 */
 	public int findCashStoreIndex (Coin c) {
-		int size = getStoreSize();
-		for (int i = 0; i < size; i++) {
-			StoreItem item = (CashStoreItem) getStoreItem(i);
-			Coin current = (Coin) item.getContent();
-			if (current.getWeight() == c.getWeight())
-				return i;
-		}
+            int i = 0;
+            Iterator iterator = getIterator();
+            while(iterator.hasNext()) {
+                StoreItem item = (CashStoreItem)iterator.next();
+                Coin current = (Coin) item.getContent();
+                if (current.getWeight() == c.getWeight())
+                        return i;
+                i++;
+            }
 		return -1;
 	}
 
@@ -55,14 +59,14 @@ public class CashStore extends Store {
 	 * @return TRUE if the weight is valid, otherwise, return FALSE.
 	 */
 	public boolean isValidWeight(double weight){
-		int size = getStoreSize();
-		for (int i = 0; i < size; i++) {
-			StoreItem item = (CashStoreItem) getStoreItem(i);
-			Coin current = (Coin) item.getContent();
-			if (current.getWeight() == weight)
-				return true;
-		}
-		return false;
+            Iterator iterator = getIterator();
+            while(iterator.hasNext()) {
+                StoreItem item = (CashStoreItem)iterator.next();
+                Coin current = (Coin) item.getContent();
+                if (current.getWeight() == weight)
+                    return true;
+            }
+            return false;
 	}
 	
 	/**
@@ -73,13 +77,13 @@ public class CashStore extends Store {
 	 * @return Coin the coin which has the input weight.
 	 */
 	public Coin findCoin(double weight){
-		int size = getStoreSize();
-		for (int i = 0; i < size; i++) {
-			StoreItem item = (CashStoreItem) getStoreItem(i);
-			Coin current = (Coin) item.getContent();
-			if (current.getWeight() == weight)
-				return current;
-		}
+            Iterator iterator = getIterator();
+            while(iterator.hasNext()) {
+                StoreItem item = (CashStoreItem)iterator.next();
+                Coin current = (Coin) item.getContent();
+                if (current.getWeight() == weight)
+                    return current;
+            }
 		return null;
 	}
 }//End of class CashStore

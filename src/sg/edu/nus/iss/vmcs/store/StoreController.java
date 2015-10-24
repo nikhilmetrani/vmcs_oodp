@@ -158,6 +158,13 @@ public class StoreController {
 			return dStore.getItems();
 	}
 
+        public Store getStoreItemsObject(int type) {
+		if (type == Store.CASH)
+			return cStore;
+		else
+			return dStore;
+	}
+        
 	/**
 	 * This method will either:
 	 * <br>
