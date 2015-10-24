@@ -71,6 +71,7 @@ public class StoreViewer extends Panel {
 			//Comment below old code
 			//viewItems[i].addListener(new StoreViewerListener(type, i, storeCtrl));
 			storeItem[i].attach(viewItems[i]); // attach observer
+                        viewItems[i].update(storeItem[i]);
 			CommandParam commandParam = new CommandParam(viewItems[i].getValue(), i);
 			viewItems[i].addListener(new CommandActionListener(ChangeStoreQtyCommand.COMMAND_NAME, commandParam));
 			this.add(viewItems[i]);

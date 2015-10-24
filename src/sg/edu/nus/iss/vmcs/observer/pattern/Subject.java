@@ -38,7 +38,6 @@ public abstract class Subject {
     public void attach(Observer observer) {
         if ((null != observer) && (!observers.contains(observer))) {
             observers.add(observer);
-            observer.update(this);
         }
     }
 

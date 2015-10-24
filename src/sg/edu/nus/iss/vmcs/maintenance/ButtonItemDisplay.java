@@ -56,7 +56,9 @@ public class ButtonItemDisplay extends Panel implements Observer {
 					ButtonItem.DEFAULT_LEN,
 					ButtonItem.GRID);
 			attachSelfToSubject(sitem[i]); //This is necessary only to clear the button items.
+                        updateSelf(sitem[i]);
 			sitem[i].attach(items[i]); //Actual value update
+                        items[i].update(sitem[i]); //Show value
                         this.add(items[i]);
 		}
 	}
@@ -67,6 +69,14 @@ public class ButtonItemDisplay extends Panel implements Observer {
      */
     private void attachSelfToSubject(Subject subjectToObserve) {
         subjectToObserve.attach(this);
+    }
+    
+    /**
+     * Added to fix warning "Make update final"
+     * @param subjectToObserve 
+     */
+    private void updateSelf(Subject subjectToObserve) {
+        update(subjectToObserve);
     }
     
 	/**

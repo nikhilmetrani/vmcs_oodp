@@ -44,7 +44,6 @@ public class LabelledDisplay extends Panel implements Observer {
 	 * @param label the label name.
 	 * @param length the length of the text field.
 	 * @param lt the layout of the display.
-     * @param subjectToObserve The subject that needs to be observed
 	 */
 	public LabelledDisplay(String label, int length, int lt) {
 
