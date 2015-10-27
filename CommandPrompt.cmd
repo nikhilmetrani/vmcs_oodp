@@ -1,1 +1,3 @@
+setlocal
+pushd
 start setenv
