@@ -30,7 +30,7 @@
       <test name="sg.edu.nus.iss.vmcs.store.AllTests"/>
       <classpath>
         <pathelement location="classes"/>
-		<pathelement location="jars"/>
+		<pathelement location="jars\junit.jar"/>
       </classpath>
     </junit>
   </target>
